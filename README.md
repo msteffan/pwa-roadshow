@@ -59,8 +59,50 @@
         navigator.serviceWorker.register('/service-worker.js')
       }
     ```
+      - if you install from root, it will service the whole url; if you install from a subdir, it will only control scripts in that subdir (i.e. don't put service worker in `/scripts` if you want it to control the whole site)
     - Install event handler -> pre-fetch the app resources & cache them: `caches.open(cacheName); return cache.addAll(filesToCache)`
   - Idle (waiting for things to happen)
   - Activated (reacts to events raised by the page)
     - check for update? -> if yes, install new version & repeat
-  - Terminated  
+    - `activate` event handler
+      - clean up previous resources if new version is installed
+  - Terminated
+- Caching Strategies
+  - "Cache and then fall back to network"
+    - SW looks first in cache; if not, it goes to network before returning response to page
+      - useful for resources that won't change
+  - "Network first but then fall back to cache"
+    - useful for things like a newsfeed where you always want latest version, but falls back to cached content if network is unavailable/flaky
+  - "Cache, then Network"
+    - SW issues cache and network requests simultaneously
+      - updates cache with new content
+      - may serve stale from cache if that request comes back first
+  - "Generic fallbak"
+    - SW -> cache -> network -> cache -> generic response if both are unavailable
+- Tools
+  - Chrome Dev Tools "Application" panel
+  - Workbox.js
+
+## Engaging Experiences
+- Service workers aren't enough!
+- Need to think about the complete experience -> What do we typically put on the web, and do we need it on every page? ie. footer links
+- App-like Experiences -> Material design, iOS human interface guide
+- Key question: "Is this notification important enough to warrant an interruption?"
+- What makes a good notification?
+  - they can get the info they need without even looking at the app
+  - Trinity: Timely, Precise, Relevant
+- Ask if user wants to see notifications -> if they say no, don't show the browser prompt
+- Weather.com - specific, contextual, user initiated
+  - "activate browser notifications"
+  - Gives users options about which alerts to see
+  - Make it easy to unsubscribe
+- TLDR: Engage user FIRST before initiating browser prompt
+- Web push libraries
+  - github.com/web-push-libs
+
+## Security
+- PWA requires HTTPS for identity, confidentiality, and integrity
+- Cost of HTTPS
+  - Certificate
+  - Search ranking -> solve by 301 redirect
+- Chrome Dev Tools "Security" panel  
