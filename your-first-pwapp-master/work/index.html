@@ -1,12 +1,12 @@
 <!--
  Copyright 2016 Google Inc.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
- 
+
       http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,8 +24,15 @@
   <title>Weather PWA</title>
   <link rel="stylesheet" type="text/css" href="styles/inline.css">
 
-  <!-- TODO add manifest here -->
-  
+  <link rel="manifest" href="/manifest.json">
+  <!-- icon elements for safari on iOS -->
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
 <body>
 
@@ -165,7 +172,7 @@
   </div>
 
   <!-- Uncomment the line below when ready to test with fake data -->
-  <!--<script src="scripts/app.js" async></script>-->
+  <script src="scripts/app.js" async></script>
 
 </body>
 </html>

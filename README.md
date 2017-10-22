@@ -106,3 +106,8 @@
   - Certificate
   - Search ranking -> solve by 301 redirect
 - Chrome Dev Tools "Security" panel  
+
+## SPA to PWA
+- github.com/googleChrome/sw-precache
+- understand how things are going to look if JS is disabled
+- Lighthouse PWA audit - goal is not to get 100/100, but to identify areas that need focus
